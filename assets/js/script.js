@@ -14,6 +14,9 @@ let vyu = 0;
 let vyd = 0;
 let attack = 0;
 
+let textX = canvas.width / 2;
+let testY = canvas.height - 30;
+
 function updatePlayer(){
     ctx.drawImage(playerSprite, 0, 5, 50, 50, x, y, 100, 100);
 
@@ -24,7 +27,6 @@ function updatePlayer(){
 
 function updateEnemy(){
     ctx.drawImage(slimeSprite, 0, 0, 35, 35, 0, 0, 80, 80);
-
 }
 
 function update(){
