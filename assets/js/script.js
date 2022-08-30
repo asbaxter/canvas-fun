@@ -1,5 +1,7 @@
 const canvas = document.getElementById("canvas");
 const playerSprite = document.getElementById("playerSprite");
+const slimeSprite = document.getElementById("slimeSprite");
+
 const ctx = canvas.getContext("2d");
 const canvasWidth = canvas.width = 600;
 const canvasHeight = canvas.height = 600;
@@ -14,13 +16,15 @@ let attack = 0;
 
 function updatePlayer(){
     ctx.drawImage(playerSprite, 0, 5, 50, 50, x, y, 100, 100);
+
     if (attack == 1){ 
-        console.log("attack") 
         ctx.drawImage(playerSprite, 45, 100, 50, 50, x, y, 100, 100);
     } 
 }
+
 function updateEnemy(){
-    
+    ctx.drawImage(slimeSprite, 0, 0, 35, 35, 0, 0, 80, 80);
+
 }
 
 function update(){
@@ -30,7 +34,8 @@ function update(){
     y += vyu;
     y += vyd;
 
-    updatePlayer()
+    updatePlayer();
+    updateEnemy();
 
     requestAnimationFrame(update)
 }
