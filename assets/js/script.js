@@ -6,8 +6,8 @@ const ctx = canvas.getContext("2d");
 const canvasWidth = canvas.width = 600;
 const canvasHeight = canvas.height = 600;
 
-let x = 250;
-let y = 250;
+let player_x = 250;
+let player_y = 250;
 let vxl = 0;
 let vxr = 0;
 let vyu = 0;
@@ -18,10 +18,26 @@ let textX = canvas.width / 2;
 let testY = canvas.height - 30;
 
 function updatePlayer(){
-    ctx.drawImage(playerSprite, 0, 5, 50, 50, x, y, 100, 100);
+    ctx.drawImage(playerSprite, 0, 5, 50, 50, player_x, player_y, 100, 100);
+
+    if (player_y < 520){
+        player_y += vyd;
+    }
+    if (player_y > -30){
+        player_y += vyu;
+    }
+    if (player_x > -30){
+        player_x += vxl;
+    }
+    if (player_x < 530){ 
+        player_x += vxr;
+    }
+
+
+
 
     if (attack == 1){ 
-        ctx.drawImage(playerSprite, 45, 100, 50, 50, x, y, 100, 100);
+        ctx.drawImage(playerSprite, 45, 100, 50, 50, player_x, player_y, 100, 100);
     } 
 }
 
@@ -31,10 +47,7 @@ function updateEnemy(){
 
 function update(){
     ctx.clearRect(0, 0, canvasWidth, canvasHeight)
-    x += vxl;
-    x += vxr;
-    y += vyu;
-    y += vyd;
+
 
     updatePlayer();
     updateEnemy();
