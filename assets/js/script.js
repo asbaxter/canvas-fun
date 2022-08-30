@@ -20,7 +20,7 @@ let textX = canvas.width / 2;
 let testY = canvas.height - 30;
 
 function updatePlayer(){
-    ctx.drawImage(playerSprite, 0, 5, 50, 50, player_x, player_y, 100, 100);
+    ctx.drawImage(playerSprite, 7, 13, 50, 50, player_x, player_y, 100, 100);
 
     // border constraints for player
     if (player_y < 520){
@@ -38,7 +38,7 @@ function updatePlayer(){
 
     // attack animation
     if (attack == 1){ 
-        ctx.drawImage(playerSprite, 45, 100, 50, 50, player_x, player_y, 100, 100);
+        ctx.drawImage(playerSprite, 52, 108, 50, 50, player_x, player_y, 100, 100);
 
         if ((player_x - 50) < enemy_x && (player_x + 50) > enemy_x && 
         (player_y - 50) < enemy_y && (player_y + 50) > enemy_y) {
@@ -56,7 +56,7 @@ function updatePlayer(){
                 enemy_y = enemy_y + 30;
             }
         }
-        
+
         setTimeout(function(){
             attack=0;
         }, 125);
