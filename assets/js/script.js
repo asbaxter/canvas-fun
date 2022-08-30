@@ -40,6 +40,23 @@ function updatePlayer(){
     if (attack == 1){ 
         ctx.drawImage(playerSprite, 45, 100, 50, 50, player_x, player_y, 100, 100);
 
+        if ((player_x - 50) < enemy_x && (player_x + 50) > enemy_x && 
+        (player_y - 50) < enemy_y && (player_y + 50) > enemy_y) {
+
+            if (enemy_x < player_x){
+                enemy_x = enemy_x - 30;
+            }
+            if (enemy_x > player_x){
+                enemy_x = enemy_x + 30;
+            }
+            if (enemy_y < player_y){
+                enemy_y = enemy_y - 30;
+            }
+            if (enemy_y > player_y){
+                enemy_y = enemy_y + 30;
+            }
+        }
+        
         setTimeout(function(){
             attack=0;
         }, 125);
@@ -66,8 +83,6 @@ function updateEnemy(){
         (player_y - 20) < enemy_y && (player_y + 20) > enemy_y) {
         gameOver();
     }
-
-
 }
 
 function update(){
