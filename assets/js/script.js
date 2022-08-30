@@ -8,6 +8,8 @@ const canvasHeight = canvas.height = 600;
 
 let player_x = 250;
 let player_y = 250;
+let enemy_x = 0;
+let enemy_y = 0;
 let vxl = 0;
 let vxr = 0;
 let vyu = 0;
@@ -20,6 +22,7 @@ let testY = canvas.height - 30;
 function updatePlayer(){
     ctx.drawImage(playerSprite, 0, 5, 50, 50, player_x, player_y, 100, 100);
 
+    // border constraints for player
     if (player_y < 520){
         player_y += vyd;
     }
@@ -33,16 +36,20 @@ function updatePlayer(){
         player_x += vxr;
     }
 
-
-
-
+    // attack animation
     if (attack == 1){ 
         ctx.drawImage(playerSprite, 45, 100, 50, 50, player_x, player_y, 100, 100);
+
+        setTimeout(function(){
+            attack=0;
+        }, 125);
     } 
 }
 
 function updateEnemy(){
     ctx.drawImage(slimeSprite, 0, 0, 35, 35, 0, 0, 80, 80);
+
+
 }
 
 function update(){
