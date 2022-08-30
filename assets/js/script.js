@@ -47,7 +47,25 @@ function updatePlayer(){
 }
 
 function updateEnemy(){
-    ctx.drawImage(slimeSprite, 0, 0, 35, 35, 0, 0, 80, 80);
+    ctx.drawImage(slimeSprite, 0, 0, 35, 35, enemy_x, enemy_y, 80, 80);
+
+    // logic that moves enemy towards player
+    if (enemy_x < player_x){
+        enemy_x++;
+    }
+    if (enemy_x > player_x){
+        enemy_x--;
+    }
+    if (enemy_y < player_y){
+        enemy_y++;
+    }
+    if (enemy_y > player_y){
+        enemy_y--;
+    }
+    if ((player_x - 20) < enemy_x && (player_x + 20) > enemy_x && 
+        (player_y - 20) < enemy_y && (player_y + 20) > enemy_y) {
+        gameOver();
+    }
 
 
 }
@@ -62,3 +80,12 @@ function update(){
     requestAnimationFrame(update)
 }
 update();
+
+function gameOver(){
+    console.log("Your Dead!!!")
+    player_x = 250;
+    player_y = 250;
+    enemy_x = 0;
+    enemy_y = 0;
+
+}
