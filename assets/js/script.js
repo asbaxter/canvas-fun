@@ -37,22 +37,15 @@ function updatePlayer(){
     if (attack == 1){ 
         ctx.drawImage(playerSprite, 52, 108, 50, 50, player_x, player_y, 100, 100);
     
+        for (let i = 0; i < enemies.length; i++){
+            enemies[i].hitEnemy();
+        }
+  
         setTimeout(function(){
             attack=0; 
         }, 125);
     } 
 }
-
-
-function gameOver(){
-    console.log("Your Dead!!!")
-    player_x = 250;
-    player_y = 250;
-    clearInterval(interval);
-
-}
-
-
 
 class Enemy {
     constructor(id, enemy_x, enemy_y, enemyHealth){
@@ -85,11 +78,10 @@ class Enemy {
     }
     hitEnemy(){
 
-        this.enemyHealth = this.enemyHealth - 33.5;
-        console.log(this.enemyHealth);
-
         if ((player_x - 50) < this.enemy_x && (player_x + 50) > this.enemy_x && 
             (player_y - 50) < this.enemy_y && (player_y + 50) > this.enemy_y) {
+
+            this.enemyHealth = this.enemyHealth - 33.5;
             
             if (this.enemy_x < player_x){
                 this.enemy_x = this.enemy_x - 30;
@@ -103,14 +95,18 @@ class Enemy {
             if (this.enemy_y > player_y){
                 this.enemy_y = this.enemy_y + 30;
             }
-            if (this.enemyHealth <= 0){
-                this.deadEnemey();
-            }
+
+            this.checkDead();
         }
     }
-    deadEnemey(){
-        console.log("slime dead");
-        enemies.splice(this.id);
+    checkDead(){
+        
+        if (this.enemyHealth <= 0){
+            console.log("slime dead");
+            console.log(this.id);
+            enemies.splice(this.id, 1);
+        }
+        
     }
 }
 
@@ -137,7 +133,6 @@ function update(){
 
     requestAnimationFrame(update)
 }
-
 
 
 const interval = setInterval(function() {
